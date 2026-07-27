@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using TodoApp.Core.Entities;
+﻿using TodoApp.Core.Entities;
 using TodoApp.Core.Interfaces;
 using TodoApp.Services.DTOs;
 using TodoApp.Services.Exceptions;
