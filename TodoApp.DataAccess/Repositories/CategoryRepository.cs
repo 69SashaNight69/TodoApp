@@ -13,10 +13,15 @@ public class CategoryRepository : ICategoryRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async Task<Category> AddAsync(Category category, CancellationToken cancellationToken = default)
+    public async Task AddAsync(Category category, CancellationToken cancellationToken = default)
     {
         await _context.Categories.AddAsync(category, cancellationToken);
-        return category;
+    }
+
+    public async Task<bool> ExistsAsync(Guid userId, string name, CancellationToken cancellationToken = default)
+    {
+        return await _context.Categories
+        .AnyAsync(c => c.UserId == userId && c.Name == name, cancellationToken);
     }
 
     public async Task<Category?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
