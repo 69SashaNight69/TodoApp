@@ -29,3 +29,10 @@ export interface PagedTasksDto {
   items: TaskDto[];
   totalCount: number;
 }
+
+export interface TaskQueryParameters {
+  searchTerm?: string;
+  categoryId?: string;
+  pageNumber: number;
+  pageSize: number;
+}

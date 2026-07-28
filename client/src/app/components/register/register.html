@@ -1,0 +1,52 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card p-4 shadow" style="width: 100%; max-width: 400px; border-radius: 12px;">
+
+    <div class="text-center mb-4">
+      <i class="bi bi-person-plus text-success" style="font-size: 3rem;"></i>
+      <h2 class="mt-2 fw-bold">Реєстрація</h2>
+      <p class="text-muted">Створіть безкоштовний акаунт</p>
+    </div>
+
+    <!-- Повідомлення про помилку -->
+    <div *ngIf="errorMessage" class="alert alert-danger p-2 text-center" role="alert" style="font-size: 0.9rem;">
+      {{ errorMessage }}
+    </div>
+
+    <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email адреса</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+          <input type="email" id="email" name="email" class="form-control"
+                 placeholder="name@example.com" required [(ngModel)]="registerData.email" #email="ngModel">
+        </div>
+      </div>
+
+      <!-- Пароль -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Пароль</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-lock"></i></span>
+          <input type="password" id="password" name="password" class="form-control"
+                 placeholder="Мінімум 6 символів" required minlength="6" [(ngModel)]="registerData.password" #password="ngModel">
+        </div>
+        <!-- Невелика валідація довжини пароля на клієнті -->
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger mt-1" style="font-size: 0.8rem;">
+          Пароль має містити не менше 6 символів.
+        </div>
+      </div>
+
+      <!-- Кнопка реєстрації -->
+      <button type="submit" class="btn btn-success w-100 py-2 fw-semibold" [disabled]="!registerForm.form.valid">
+        Зареєструватися
+      </button>
+    </form>
+
+    <div class="text-center mt-4">
+      <span class="text-muted">Вже є акаунт?</span>
+      <a routerLink="/login" class="text-success fw-semibold text-decoration-none ms-1">Увійти</a>
+    </div>
+
+  </div>
+</div>
